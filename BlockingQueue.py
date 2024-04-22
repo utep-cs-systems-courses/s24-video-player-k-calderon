@@ -15,8 +15,8 @@ class BlockingQueue:
     def put(self, item):
         # decrements empty if greater than zero, else it blocks
         self.empty.acquire() 
+        self.qLock.acquire() 
         try:
-            self.qLock.acquire() 
             self.queue.put(item)
         finally:
             # always release the lock
@@ -26,8 +26,8 @@ class BlockingQueue:
 
     def get(self):
         self.full.acquire()
+        self.qLock.acquire()
         try:
-            self.qLock.aquire()
             item = self.queue.get()
         finally:
             self.qLock.release()
