@@ -17,7 +17,7 @@ def log(msg, obj = None):
     if timestampLogging:
         msg = str(getMsgTimestamp()) + "ms > " + msg
     if obj is not None:
-        msg = msg + " > " + obj
+        msg = msg + " > " + str(obj)
     print(msg)
 def debug(msg, obj = None):
     if debugLogging:
