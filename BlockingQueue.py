@@ -6,7 +6,7 @@ import time
 class BlockingQueue:
     def __init__(self, capacity):
         self.capacity = capacity
-        self.queue = Queue(capacity)  # This is a FIFO queue
+        self.queue = Queue(capacity)
         
         # semaphores that track empty and full "slots"
         self.empty = Semaphore(capacity)  

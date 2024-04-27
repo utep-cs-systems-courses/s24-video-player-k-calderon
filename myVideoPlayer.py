@@ -16,7 +16,29 @@ from myDisplayFrames import displayFrames
 # filename
 # grayscale
 
+def main2():
+    filename = "clip.mp4"
+    maxFrames = 72
+    queueCapacity = 10
 
+    grayscaleHandler = BlockingQueue(queueCapacity)
+    displayHander = BlockingQueue(queueCapacity)
+    # Create thread to run Extracting frames in parallel
+    extractWorker = threading.Thread(target=extractFrames, args=(filename,coloredFramesQueue,10000))
+    extractWorker.start()
+
+    # Create thread to run color to grayscale function in parallel
+    #grayscaleWorker = threading.Thread(target=colorToGrayscale,args=(coloredFramesQueue,grayscaleFramesQueue))
+    #grayscaleWorker.start()
+
+    # Create thread to run display frames in parallel 
+    displayWorker = threading.Thread(target=displayFrames,args=(grayscaleFramesQueue,))
+    displayWorker.start()
+
+    # Join all created threads to main thread
+    extractWorker.join()
+    grayscaleWorker.join()
+    displayWorker.join()
 def main():
     filename = 'clip.mp4'
     maxFrames = 72
