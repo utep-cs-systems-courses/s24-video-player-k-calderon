@@ -10,7 +10,7 @@ from myConvertToGrayscale import colorToGrayscale
 
 def main():
     filename = 'clip.mp4'
-    maxFramesToLoad = 100
+    maxFramesToLoad = 10000
 
     coloredFramesQueue = BlockingQueue(10)
     grayscaleFramesQueue = BlockingQueue(10)
