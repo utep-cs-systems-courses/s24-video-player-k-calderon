@@ -1,8 +1,5 @@
-import threading
+
 import cv2
-import numpy as np
-import base64
-import queue
 import log as l
 
 def displayFrames(grayscaleFramesQueue):
@@ -14,6 +11,7 @@ def displayFrames(grayscaleFramesQueue):
         # get the next frame
         frame = grayscaleFramesQueue.get()
 
+        # check if there's no more frames
         if frame is None:
             break
 
