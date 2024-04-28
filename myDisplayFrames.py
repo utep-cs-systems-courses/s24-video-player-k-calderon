@@ -5,15 +5,17 @@ import base64
 import queue
 import log as l
 
-def displayFrames(inputBuffer):
+def displayFrames(grayscaleFramesQueue):
     # initialize frame count
     count = 0
 
     # go through each frame in the buffer until the buffer is empty
-    while not inputBuffer.isEmpty():
-        l.debug("inside displayFrames while loop")
+    while True:
         # get the next frame
-        frame = inputBuffer.get()
+        frame = grayscaleFramesQueue.get()
+
+        if frame is None:
+            break
 
         print(f'Displaying frame {count}')        
 
@@ -24,6 +26,7 @@ def displayFrames(inputBuffer):
             break
 
         count += 1
+
 
     print('Finished displaying all frames')
     # cleanup the windows
